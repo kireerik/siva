@@ -1,0 +1,243 @@
+﻿<!DOCTYPE HTML>
+<html>
+<head>
+	<title>Siva - Particle System</title>
+	<link rel="SHORTCUT ICON" href="favicon.ico">
+
+	<meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1, maximum-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge, chrome=1">
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+
+	<meta name="keywords" content="siva, particle system, részecske rendszer">
+	<meta name="description" content="">
+	<meta name="robots" content="index, follow">
+	<meta name="revisit-after" content="1 Week">
+	<meta name="author" content="kireerik">
+	<meta name="copyright" content="kireerik">
+	<meta name="distribution" content="local">
+	<meta name="language" content="HU">
+	<meta name="rating" content="general">
+	<style>
+		@font-face {
+			font-family: 'Rosario';
+			src: url('Font/Rosario/Rosario-Regular.ttf');
+		}
+		@font-face {
+			font-family: 'Marcellus_SC';
+			src: url('Font/Marcellus_SC/MarcellusSC-Regular.ttf');
+		}
+		@font-face {
+			font-family: 'Bowlby One SC';
+			src: url('Font/Bowlby_One_SC/BowlbyOneSC-Regular.ttf');
+		}
+		body {
+			text-align: justify;
+			font-family: 'Rosario', sans-serif;
+			font-size: 16pt;
+			max-width: 1000px;
+			margin: 0px auto;
+			padding: 0px 12px 100px 12px;
+			background: #eee;
+			color: #008800;
+		}
+		h1 {
+			font-size: 132pt;
+			text-align: center;
+			margin-bottom: 0px;
+			font-family: 'Bowlby One SC', sans-serif;
+		}
+		h2 {
+			font-size: 36pt;
+			text-align: center;
+			margin: 0px 0px 200px 0px;
+			font-family: 'Marcellus_SC', sans-serif;
+		}
+		h3 {
+			font-size: 46pt;
+			margin: 30px 0px 30px 20px;
+			font-family: 'Rosario', sans-serif;
+		}
+		h3:after {
+			z-index: 1;
+			position: relative;
+			content: "";
+			float: left;
+			width: 102%; height: 10px;
+			margin: 3px 0px 0px -25px;
+
+			border-top: 1px solid rgba(0, 0, 0, .3);
+			-webkit-box-shadow: 0px 8px 8px -8px rgba(0, 0, 0, .16) inset;
+			-moz-box-shadow: 0px 8px 8px -8px rgba(0, 0, 0, .16) inset;
+			-ms-box-shadow: 0px 8px 8px -8px rgba(0, 0, 0, .16) inset;
+			-o-box-shadow: 0px 8px 8px -8px rgba(0, 0, 0, .16) inset;
+			box-shadow: 0px 8px 8px -8px rgba(0, 0, 0, .16) inset;
+		}
+		.p3 {
+			margin: 0px 0px 0px 40px;
+		}
+		h4 {
+			font-size: 26pt;
+			margin: 30px 0px 30px 40px;
+			font-family: 'Rosario', sans-serif;
+		}
+		h4:after {
+			z-index: 1;
+			position: relative;
+			content: "";
+			float: left;
+			width: 100%; height: 10px;
+			margin: 3px 0px 0px -5px;
+
+			border-top: 1px solid rgba(0, 0, 0, .3);
+			-webkit-box-shadow: 0px 8px 8px -8px rgba(0, 0, 0, .16) inset;
+			-moz-box-shadow: 0px 8px 8px -8px rgba(0, 0, 0, .16) inset;
+			-ms-box-shadow: 0px 8px 8px -8px rgba(0, 0, 0, .16) inset;
+			-o-box-shadow: 0px 8px 8px -8px rgba(0, 0, 0, .16) inset;
+			box-shadow: 0px 8px 8px -8px rgba(0, 0, 0, .16) inset;
+		}
+		.p4 {
+			margin: 0px 0px 0px 60px;
+		}
+		h5 {
+			font-size: 16pt;
+			margin: 30px 0px 30px 60px;
+			font-family: 'Rosario', sans-serif;
+		}
+		h5:after {
+			z-index: 1;
+			position: relative;
+			content: "";
+			float: left;
+			width: 100%; height: 10px;
+			margin: 3px 0px 0px -5px;
+
+			border-top: 1px solid rgba(0, 0, 0, .3);
+			-webkit-box-shadow: 0px 8px 8px -8px rgba(0, 0, 0, .16) inset;
+			-moz-box-shadow: 0px 8px 8px -8px rgba(0, 0, 0, .16) inset;
+			-ms-box-shadow: 0px 8px 8px -8px rgba(0, 0, 0, .16) inset;
+			-o-box-shadow: 0px 8px 8px -8px rgba(0, 0, 0, .16) inset;
+			box-shadow: 0px 8px 8px -8px rgba(0, 0, 0, .16) inset;
+		}
+		.p5 {
+			margin: 0px 0px 0px 80px;
+		}
+		.footer {
+			text-align: center;
+		}
+		a {
+			text-decoration: none;
+			color: rgba(0, 0, 0, .8);
+			border-bottom: 1px solid transparent;
+
+			-webkit-transition: all .16s ease-in;
+			-moz-transition: all .16s ease-in;
+			-ms-transition: all .16s ease-in;
+			-o-transition: all .16s ease-in;
+			transition: all .16s ease-in;
+		}
+		a:hover {
+			color: rgba(0, 0, 0, .8);
+			text-shadow: 0px 0px 1px rgba(0, 0, 0, 1);
+
+			border-bottom: 1px solid rgba(0, 0, 0, .3);
+		}
+		a:active {
+			color: transparent;
+			background: transparent;
+			border-bottom: 1px solid transparent;
+
+			-webkit-transition: all 0s ease-in;
+			-moz-transition: all 0s ease-in;
+			-ms-transition: all 0s ease-in;
+			-o-transition: all 0s ease-in;
+			transition: all 0s ease-in;
+		}
+		.preFooter {
+			text-align: center;
+			margin: 120px 0px 0px 0px;
+		}
+		.footer {
+			margin: 80px 0px 0px 0px;
+		}
+	</style>
+</head>
+<body>
+	<h1>Siva</h1>
+	<h2>Particle System</h2>
+
+	<h3>Felhasználóknak</h3>
+		<div class="p3">
+			Bal egér kattintással füstöt rajzolhatunk. A jobb egér gombot nyomva tartva pedig mozgathatjuk a kísérletben pattogó halvány színes labdákat. Később egy napocskára hasonlító karaktert is irányíthatunk a nyíl billentyűkkel.
+		</div>
+	<h3>Fejlesztőknek</h3>
+		<div class="p3">
+			A rendszer olyan magas szintű függvényeket biztosít, melyekkel könnyedén hozhatunk létre mozgó részecske rendszereket (animációkat).
+		</div>
+		<h4>Részecske rendszer</h4>
+			<div class="p4">
+				Adott egy kezdő- és egy végállapot. Továbbá a lájátszás sebessége, típusa (pl lineáris), részecske alakja. A program ezekből a paraméterekből hozza létre az animációt. Illetve számolja a részecskék aktuális állapotát.
+			</div>
+		<h4>Kilöködő (emitter)</h4>
+			<div class="p4">
+				Létrehozhatunk részecske rendszer csoportokat különböző paraméterekkel.
+			</div>
+
+		<h4>Kép alapú kirajzolás</h4>
+			<div class="p4">
+				Adott egy képfájl, amit a program képpontonként dolgoz fel, majd ez alapján hoz létre tetszőleges típusú és sűrűségű részecske rendszereket.
+			</div>
+		<h4>Függvények rendre</h4>
+			<h5>void addParticle(Emitter e)</h5>
+				<div class="p5">
+					Hozzá ad 1 darab részecskét a kilöködés paramétereivel.
+				</div>
+			<h5>void addEmitter(Emitter e)</h5>
+				<div class="p5">
+					Kilöködő objektum létrehozása a paramétereivel:
+					<br>Emitter newEmitter(char *name, int preDuration, int reStart, char *type
+						<br>&nbsp;&nbsp;&nbsp;, int db, double x, double y, int rotation, int alpha
+						<br>&nbsp;&nbsp;&nbsp;, int startR, int rMin, int rMax
+					<br>)
+					<br>típusok (char *type):
+					<br>&nbsp;&nbsp;&nbsp;"bouble"
+					<br>&nbsp;&nbsp;&nbsp;, "smoke"
+					<br>&nbsp;&nbsp;&nbsp;, "water"
+					<br>&nbsp;&nbsp;&nbsp;, "ball"
+					<br>&nbsp;&nbsp;&nbsp;, "wind"
+					<br>&nbsp;&nbsp;&nbsp;, "siva"
+					<br>&nbsp;&nbsp;&nbsp;, "sun"
+					<br>
+					<br>Az ujjászületés mélysége (int reStart) szintenként eggyel csökken.
+				</div>
+			<h5>void addEmitterGroup(char *img, double scaleX, double scaleY, double density, Emitter e)</h5>
+				<div class="p5">
+					A beolvasott kép fekete képpontjaihoz tetszőleges sürűséggel ad hozzá kilőködőket.
+				</div>
+		<h4>Egyéb</h4>
+			<div class="p4">
+				A program duplán láncolt listát használ. Az egyes részecskéket név alapján külön tudjuk kezelni.
+			</div>
+	<h3>Tesztelés</h3>
+		<div class="p3">
+			A szaporodásra képes részecskéknek köszönhetően könnyedén felhasználhatjuk az összes memóriát. Ez a program kifagyásához vezet az általam használt rendszeren (Windows 7). Ilyenkor a másodpercekre eső képmegjelenítések száma is jelentősen lecsökken.
+			<br>Érdekes látványt kaphatunk, ha a törlő szín átlátszóságát át állítjuk. Ugyanis ilyenkor a mozgó részecskék lenyomatot hagynak maguk után.
+			<br>Bizonyos körülmények között a program nem tudja lekezelni a bemeneteket, mert csak a kirajzoltatásra jut az erőforrásokból. Ezt megpróbáltam kiküszöbölni, például azzal hogy a másodpercekre eső képmegjelenítések számát magam számolom ki.
+		</div>
+
+	<h3>Kapcsolatfelvétel</h3>
+		<div class="p3">Engi Erik : kireerike@gmail.com
+		<br><a href="http://kireerik.uw.hu" target="_blank">kireerik.uw.hu</a></div>
+
+	<div class="preFooter">
+		A Siva névre keresztelt rendszer a BME VIK 1. Nagyházi feladatára készült.
+	</div>
+	<div class="preFooter" style="text-align:center;">
+		<img src="siva.png" style="width:20%;">
+	</div>
+	<div class="footer">
+		copyright © 2013. Engi Erik (kireerik) - A0JG6J
+		<br>Minden jog fenntartva.
+		<br>BME VIK 1. Nagyházi feladat 2013.
+	</div>
+</body>
+</html>
